@@ -1,0 +1,23 @@
+# Build output
+.build/
+.build-app/
+DerivedData/
+*.app
+
+# Swift / compiler intermediates
+*.o
+*.d
+*.swiftdeps
+*.swiftmodule
+.swiftpm/
+
+# Xcode
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+
+# Conductor workspace scratch (reference clones, proof-of-concept, icon previews)
+.context/
+
+# macOS
+.DS_Store
