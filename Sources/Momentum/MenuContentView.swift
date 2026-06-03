@@ -6,6 +6,7 @@ struct MenuContentView: View {
     @ObservedObject var controller: M4Controller
     @State private var localValue: Double = 50
     @State private var dragging = false
+    @State private var launchAtLogin = false
 
     private var sliderInt: Int { Int(localValue.rounded()) }
 
@@ -32,13 +33,20 @@ struct MenuContentView: View {
             }
 
             rowDivider
+            launchAtLoginRow
+                .padding(.horizontal, 16)
+                .padding(.vertical, 8)
+            rowDivider
             footer
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
         }
         .frame(width: 344)
         .background(VisualEffectView(material: .menu, blending: .behindWindow).ignoresSafeArea())
-        .onAppear { syncFromDevice() }
+        .onAppear {
+            syncFromDevice()
+            launchAtLogin = LaunchAtLogin.isEnabled
+        }
         .onChange(of: controller.noiseValue) { _, _ in syncFromDevice() }
         .onChange(of: controller.noiseMode) { _, _ in syncFromDevice() }
     }
@@ -198,6 +206,21 @@ struct MenuContentView: View {
                     NSWorkspace.shared.open(url)
                 }
             }
+        }
+    }
+
+    // MARK: - Settings
+
+    private var launchAtLoginRow: some View {
+        HStack(spacing: 8) {
+            Text("Launch at Login").font(.subheadline)
+            Spacer()
+            Toggle("", isOn: $launchAtLogin)
+                .labelsHidden()
+                .toggleStyle(.switch)
+                .onChange(of: launchAtLogin) { _, enabled in
+                    LaunchAtLogin.setEnabled(enabled)
+                }
         }
     }
 

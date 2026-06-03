@@ -19,6 +19,7 @@ from the menu bar.
 - **Bidirectional slider** (Custom mode) — one control from full **ANC** through neutral to full **Transparency**.
 - **Anti-Wind** toggle (Custom mode) — reduces wind noise in ANC.
 - **Live device info** — battery %, active codec, firmware version, model, connection state.
+- **Launch at Login** — optional, toggle it from the popover.
 - **Stays in sync** — reflects changes you make physically on the headphones or from the phone app.
 - Lightweight menu bar app; talks **directly** to the headphones over Bluetooth (no companion service).
 
